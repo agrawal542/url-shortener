@@ -35,13 +35,11 @@ export const urlController = {
         try {
             const result = await urlService.getOriginalUrl(input.shortUrl);
             return result;
-        } catch (error) {
+        } catch (error:any) {
             logger.error('Error getting original URL', error);
-            throw new InternalServerError('Failed to get original URL');
+            throw new InternalServerError(`Failed to get original URL ${error.message}`);
         }
     }),
-
-    
 }
 
 export async function redirectUrl(req: Request, res: Response, next: NextFunction) {
